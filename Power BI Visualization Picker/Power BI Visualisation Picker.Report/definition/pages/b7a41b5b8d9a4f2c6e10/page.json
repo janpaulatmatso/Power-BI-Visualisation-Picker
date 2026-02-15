@@ -1,14 +1,21 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
-  "name": "6d9234e03ce5f4af03c6",
-  "displayName": "CHRTS",
+  "name": "b7a41b5b8d9a4f2c6e10",
+  "displayName": "Visual Guide",
   "displayOption": "FitToPage",
-  "height": 1500,
-  "width": 2000,
+  "height": 720,
+  "width": 1280,
   "objects": {
     "background": [
       {
         "properties": {
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
           "color": {
             "solid": {
               "color": {
@@ -18,13 +25,6 @@
                     "Percent": -0.1
                   }
                 }
-              }
-            }
-          },
-          "transparency": {
-            "expr": {
-              "Literal": {
-                "Value": "0D"
               }
             }
           }
