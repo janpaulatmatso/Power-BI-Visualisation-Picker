@@ -1,0 +1,44 @@
+table DimCustomer
+	lineageTag: 39c03f7f-a3e2-489f-8d07-98f8387f9797
+
+	column CustomerKey
+		dataType: int64
+		lineageTag: 07f97f72-7ead-4652-919a-f76f2d473267
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 5c8f45dc-c4ff-4502-b5eb-0931e0eb11ad
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: aea44de8-2f4e-443c-9198-054d4ea74c8e
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCustomer = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows({
+				        {1, "Acme Ltd", "Enterprise"},
+				        {2, "Blue Retail", "SMB"},
+				        {3, "Northwind Co", "Enterprise"},
+				        {4, "City Services", "Public"},
+				        {5, "Home Market", "Consumer"},
+				        {6, "Delta Stores", "SMB"}
+				    }, {"CustomerKey", "CustomerName", "Segment"}),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"CustomerKey", Int64.Type}, {"CustomerName", type text}, {"Segment", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table

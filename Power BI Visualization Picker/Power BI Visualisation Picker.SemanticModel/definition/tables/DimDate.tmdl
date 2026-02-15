@@ -1,0 +1,78 @@
+table DimDate
+	lineageTag: 2d35fd91-2af8-4b0d-ae55-4fcb4b9bdb71
+
+	column DateKey
+		dataType: int64
+		lineageTag: 0074cf6d-f24c-4af0-98f1-4a472594f4f6
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: "Short Date"
+		lineageTag: d5a85918-f838-4f76-b6e5-27f0692004f4
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		lineageTag: 654af733-9f30-43d6-b2e5-6f62166f0f93
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: 58787f48-61bc-4017-bb03-4039094aa4f2
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: b1325932-ca11-4ceb-b694-e2fb84169f0b
+		summarizeBy: none
+		sourceColumn: MonthName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		dataType: int64
+		lineageTag: 6889e16f-7931-4e7d-93e6-df42d0476089
+		summarizeBy: sum
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows({
+				        {20250101, "2025-01-01", 2025, "Q1", "Jan", 1},
+				        {20250102, "2025-01-02", 2025, "Q1", "Jan", 1},
+				        {20250103, "2025-01-03", 2025, "Q1", "Jan", 1},
+				        {20250104, "2025-01-04", 2025, "Q1", "Jan", 1},
+				        {20250105, "2025-01-05", 2025, "Q1", "Jan", 1},
+				        {20250201, "2025-02-01", 2025, "Q1", "Feb", 2},
+				        {20250202, "2025-02-02", 2025, "Q1", "Feb", 2},
+				        {20250203, "2025-02-03", 2025, "Q1", "Feb", 2},
+				        {20250204, "2025-02-04", 2025, "Q1", "Feb", 2},
+				        {20250205, "2025-02-05", 2025, "Q1", "Feb", 2},
+				        {20250301, "2025-03-01", 2025, "Q1", "Mar", 3},
+				        {20250302, "2025-03-02", 2025, "Q1", "Mar", 3},
+				        {20250303, "2025-03-03", 2025, "Q1", "Mar", 3},
+				        {20250304, "2025-03-04", 2025, "Q1", "Mar", 3},
+				        {20250305, "2025-03-05", 2025, "Q1", "Mar", 3}
+				    }, {"DateKey", "Date", "Year", "Quarter", "MonthName", "MonthNumber"}),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"DateKey", Int64.Type}, {"Date", type date}, {"Year", Int64.Type}, {"Quarter", type text}, {"MonthName", type text}, {"MonthNumber", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table

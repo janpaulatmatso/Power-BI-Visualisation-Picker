@@ -8,11 +8,32 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["Measures (2)"]
+annotation PBI_QueryOrder = ["DimDate","DimProduct","DimCustomer","DimRegion","FactSales","Measures (2)"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table 'Measures (2)'
+ref table DimDate
+ref table DimProduct
+ref table DimCustomer
+ref table DimRegion
+ref table FactSales
+
+relationship 16418a5d-2d11-4f9c-b4b6-911ad7d2a8fc
+	fromColumn: FactSales.DateKey
+	toColumn: DimDate.DateKey
+
+relationship c6ba0fc4-1308-4ec6-bf41-7793e9865f9e
+	fromColumn: FactSales.ProductKey
+	toColumn: DimProduct.ProductKey
+
+relationship 50a6b2b2-6c90-4112-a54e-93ea1865f5d8
+	fromColumn: FactSales.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+relationship 18d392c2-4ba7-44e9-8769-f5f4ed628ff3
+	fromColumn: FactSales.RegionKey
+	toColumn: DimRegion.RegionKey
 
 ref cultureInfo en-GB
 

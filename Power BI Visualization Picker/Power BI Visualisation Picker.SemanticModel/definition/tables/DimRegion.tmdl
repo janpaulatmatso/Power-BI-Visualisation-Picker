@@ -1,0 +1,42 @@
+table DimRegion
+	lineageTag: a3f09f29-549f-4d8e-b64b-a43ce80f3bf2
+
+	column RegionKey
+		dataType: int64
+		lineageTag: c7b2fcea-2d5f-4a39-a643-f600918f4de5
+		summarizeBy: none
+		sourceColumn: RegionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 6d7ea8d8-dd67-4c3f-9d89-4783347ff0da
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: b2eb4f87-bcf6-4bb7-b1a1-55df5f06f485
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimRegion = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows({
+				        {1, "Netherlands", "West"},
+				        {2, "Germany", "Central"},
+				        {3, "France", "West"},
+				        {4, "Belgium", "West"}
+				    }, {"RegionKey", "Country", "Region"}),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"RegionKey", Int64.Type}, {"Country", type text}, {"Region", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table

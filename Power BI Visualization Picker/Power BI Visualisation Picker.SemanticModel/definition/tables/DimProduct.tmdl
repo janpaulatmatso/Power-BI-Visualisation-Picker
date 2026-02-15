@@ -1,0 +1,44 @@
+table DimProduct
+	lineageTag: eca53467-fb58-4cb3-a677-f46ac41f3f2e
+
+	column ProductKey
+		dataType: int64
+		lineageTag: a8b9e26e-eb82-4a06-b326-a44561280da4
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 38e640d6-4f86-484d-8f9f-cc0fdf854f36
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: a6327f34-7729-47f9-823f-c32249be247f
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProduct = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows({
+				        {1, "Laptop Pro 14", "Technology"},
+				        {2, "Laptop Air 13", "Technology"},
+				        {3, "Office Chair", "Furniture"},
+				        {4, "Standing Desk", "Furniture"},
+				        {5, "Printer Ink", "Office Supplies"},
+				        {6, "Notebook Pack", "Office Supplies"}
+				    }, {"ProductKey", "ProductName", "Category"}),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"ProductKey", Int64.Type}, {"ProductName", type text}, {"Category", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table

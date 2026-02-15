@@ -1,0 +1,121 @@
+table FactSales
+	lineageTag: c0ecdd6a-c039-4029-941e-5c5f89bf7540
+
+	column SalesKey
+		dataType: int64
+		lineageTag: e8bc9374-85d8-4f8f-837a-5f2ecb8fa3c3
+		summarizeBy: none
+		sourceColumn: SalesKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		lineageTag: 80875fbc-f95c-4f56-a40d-69f2940f5680
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		lineageTag: 69db1457-4f3b-4f3a-88f4-8fcd57f5819e
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		lineageTag: 1c6f9a42-1397-4fd7-a8c7-5e1e66613d8c
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionKey
+		dataType: int64
+		lineageTag: d31ebcd5-3fc0-43c2-bf89-f24ec76e8f49
+		summarizeBy: none
+		sourceColumn: RegionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		lineageTag: 4170f4f5-37e8-4355-b58f-f4190b608e03
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: decimal
+		formatString: "$#,0.00"
+		lineageTag: 5eac2fdd-fc51-48d0-b9f8-2cfe8ce5f4b7
+		summarizeBy: average
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesAmount
+		dataType: decimal
+		formatString: "$#,0.00"
+		lineageTag: f4a0888a-d6d9-41aa-b5be-75c93caaf8d5
+		summarizeBy: sum
+		sourceColumn: SalesAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	measure 'Total Sales' = SUM(FactSales[SalesAmount])
+		formatString: "$#,0.00"
+		lineageTag: 7e6e319f-2e9f-417f-bba7-b21ce4e4ad53
+
+	measure 'Total Quantity' = SUM(FactSales[Quantity])
+		lineageTag: 852f5ff6-da25-423a-ab9a-95f9eb72fb53
+
+	measure 'Average Unit Price' = DIVIDE([Total Sales], [Total Quantity])
+		formatString: "$#,0.00"
+		lineageTag: 9c3f6f86-d15f-4416-b8d4-1b3401ff3e5f
+
+	partition FactSales = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows({
+				        {1, 20250101, 1, 1, 1, 2, 1299.00, 2598.00},
+				        {2, 20250101, 3, 2, 2, 4, 249.00, 996.00},
+				        {3, 20250102, 5, 3, 3, 10, 39.00, 390.00},
+				        {4, 20250102, 2, 4, 1, 1, 1099.00, 1099.00},
+				        {5, 20250103, 4, 5, 4, 1, 599.00, 599.00},
+				        {6, 20250103, 6, 6, 2, 12, 12.00, 144.00},
+				        {7, 20250104, 1, 2, 1, 1, 1299.00, 1299.00},
+				        {8, 20250104, 3, 1, 3, 3, 249.00, 747.00},
+				        {9, 20250105, 2, 3, 4, 2, 1099.00, 2198.00},
+				        {10, 20250105, 5, 4, 2, 9, 39.00, 351.00},
+				        {11, 20250201, 4, 1, 1, 2, 599.00, 1198.00},
+				        {12, 20250201, 6, 5, 3, 20, 12.00, 240.00},
+				        {13, 20250202, 1, 6, 2, 1, 1299.00, 1299.00},
+				        {14, 20250202, 3, 2, 4, 5, 249.00, 1245.00},
+				        {15, 20250203, 2, 1, 1, 2, 1099.00, 2198.00},
+				        {16, 20250203, 5, 5, 2, 7, 39.00, 273.00},
+				        {17, 20250204, 4, 4, 3, 1, 599.00, 599.00},
+				        {18, 20250204, 6, 3, 4, 18, 12.00, 216.00},
+				        {19, 20250205, 1, 2, 1, 1, 1299.00, 1299.00},
+				        {20, 20250205, 3, 6, 2, 4, 249.00, 996.00},
+				        {21, 20250301, 2, 2, 3, 1, 1099.00, 1099.00},
+				        {22, 20250301, 5, 1, 4, 8, 39.00, 312.00},
+				        {23, 20250302, 4, 3, 1, 2, 599.00, 1198.00},
+				        {24, 20250302, 6, 4, 2, 15, 12.00, 180.00},
+				        {25, 20250303, 1, 5, 1, 1, 1299.00, 1299.00},
+				        {26, 20250303, 3, 6, 3, 6, 249.00, 1494.00},
+				        {27, 20250304, 2, 1, 4, 2, 1099.00, 2198.00},
+				        {28, 20250304, 5, 2, 2, 6, 39.00, 234.00},
+				        {29, 20250305, 4, 3, 1, 1, 599.00, 599.00},
+				        {30, 20250305, 6, 4, 4, 10, 12.00, 120.00}
+				    }, {"SalesKey", "DateKey", "ProductKey", "CustomerKey", "RegionKey", "Quantity", "UnitPrice", "SalesAmount"}),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"SalesKey", Int64.Type}, {"DateKey", Int64.Type}, {"ProductKey", Int64.Type}, {"CustomerKey", Int64.Type}, {"RegionKey", Int64.Type}, {"Quantity", Int64.Type}, {"UnitPrice", type number}, {"SalesAmount", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
