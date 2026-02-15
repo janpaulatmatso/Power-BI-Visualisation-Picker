@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Power BI Visualisation Picker"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "fbb86543-7cfb-4219-892f-c7acc99bf2e3"
+  }
+}

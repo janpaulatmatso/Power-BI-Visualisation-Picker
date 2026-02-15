@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Power BI Visualisation Picker"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4b423a8a-b426-4481-873a-40f2f9c0094f"
+  }
+}
