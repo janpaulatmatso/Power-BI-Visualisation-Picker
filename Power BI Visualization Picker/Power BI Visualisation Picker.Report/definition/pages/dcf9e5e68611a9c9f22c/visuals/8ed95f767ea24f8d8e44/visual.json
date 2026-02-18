@@ -1,19 +1,53 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "65088bce21608898ec59",
+  "name": "8ed95f767ea24f8d8e44",
   "position": {
-    "x": 222,
-    "y": 30,
-    "z": 2000,
+    "x": 486,
+    "y": 370,
+    "z": 3000,
     "height": 300,
     "width": 500,
-    "tabOrder": 2000
+    "tabOrder": 3000
   },
   "visual": {
-    "visualType": "decompositionTreeVisual",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Analyze": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCustomer"
+                    }
+                  },
+                  "Property": "CustomerName"
+                }
+              },
+              "queryRef": "DimCustomer.CustomerName"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "MonthName"
+                }
+              },
+              "queryRef": "DimDate.MonthName"
+            }
+          ]
+        },
+        "Values": {
           "projections": [
             {
               "field": {
@@ -27,36 +61,6 @@
                 }
               },
               "queryRef": "Measures (2).Total Sales"
-            }
-          ]
-        },
-        "ExplainBy": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
-                    }
-                  },
-                  "Property": "Category"
-                }
-              },
-              "queryRef": "DimProduct.Category"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimRegion"
-                    }
-                  },
-                  "Property": "Region"
-                }
-              },
-              "queryRef": "DimRegion.Region"
             }
           ]
         }

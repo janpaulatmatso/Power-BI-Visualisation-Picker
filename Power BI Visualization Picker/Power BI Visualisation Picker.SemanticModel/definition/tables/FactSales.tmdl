@@ -67,17 +67,6 @@ table FactSales
 
 		annotation SummarizationSetBy = Automatic
 
-	measure 'Total Sales' = SUM(FactSales[SalesAmount])
-		formatString: "$#,0.00"
-		lineageTag: 7e6e319f-2e9f-417f-bba7-b21ce4e4ad53
-
-	measure 'Total Quantity' = SUM(FactSales[Quantity])
-		lineageTag: 852f5ff6-da25-423a-ab9a-95f9eb72fb53
-
-	measure 'Average Unit Price' = DIVIDE([Total Sales], [Total Quantity])
-		formatString: "$#,0.00"
-		lineageTag: 9c3f6f86-d15f-4416-b8d4-1b3401ff3e5f
-
 	partition FactSales = m
 		mode: import
 		source =

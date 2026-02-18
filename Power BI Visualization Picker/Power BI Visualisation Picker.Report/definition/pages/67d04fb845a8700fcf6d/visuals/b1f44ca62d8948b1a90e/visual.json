@@ -1,8 +1,8 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "65088bce21608898ec59",
+  "name": "b1f44ca62d8948b1a90e",
   "position": {
-    "x": 222,
+    "x": 750,
     "y": 30,
     "z": 2000,
     "height": 300,
@@ -10,10 +10,27 @@
     "tabOrder": 2000
   },
   "visual": {
-    "visualType": "decompositionTreeVisual",
+    "visualType": "areaChart",
     "query": {
       "queryState": {
-        "Analyze": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "MonthName"
+                }
+              },
+              "queryRef": "DimDate.MonthName"
+            }
+          ]
+        },
+        "Y": {
           "projections": [
             {
               "field": {
@@ -23,40 +40,10 @@
                       "Entity": "Measures (2)"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "Total Quantity"
                 }
               },
-              "queryRef": "Measures (2).Total Sales"
-            }
-          ]
-        },
-        "ExplainBy": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimProduct"
-                    }
-                  },
-                  "Property": "Category"
-                }
-              },
-              "queryRef": "DimProduct.Category"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimRegion"
-                    }
-                  },
-                  "Property": "Region"
-                }
-              },
-              "queryRef": "DimRegion.Region"
+              "queryRef": "Measures (2).Total Quantity"
             }
           ]
         }

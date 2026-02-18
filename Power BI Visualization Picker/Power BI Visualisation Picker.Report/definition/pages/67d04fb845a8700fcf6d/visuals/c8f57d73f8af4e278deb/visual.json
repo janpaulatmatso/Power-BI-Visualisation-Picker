@@ -1,36 +1,36 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "65088bce21608898ec59",
+  "name": "c8f57d73f8af4e278deb",
   "position": {
-    "x": 222,
-    "y": 30,
-    "z": 2000,
+    "x": 486,
+    "y": 370,
+    "z": 3000,
     "height": 300,
     "width": 500,
-    "tabOrder": 2000
+    "tabOrder": 3000
   },
   "visual": {
-    "visualType": "decompositionTreeVisual",
+    "visualType": "ribbonChart",
     "query": {
       "queryState": {
-        "Analyze": {
+        "Category": {
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Measures (2)"
+                      "Entity": "DimDate"
                     }
                   },
-                  "Property": "Total Sales"
+                  "Property": "MonthName"
                 }
               },
-              "queryRef": "Measures (2).Total Sales"
+              "queryRef": "DimDate.MonthName"
             }
           ]
         },
-        "ExplainBy": {
+        "Series": {
           "projections": [
             {
               "field": {
@@ -44,19 +44,23 @@
                 }
               },
               "queryRef": "DimProduct.Category"
-            },
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimRegion"
+                      "Entity": "Measures (2)"
                     }
                   },
-                  "Property": "Region"
+                  "Property": "Total Sales"
                 }
               },
-              "queryRef": "DimRegion.Region"
+              "queryRef": "Measures (2).Total Sales"
             }
           ]
         }

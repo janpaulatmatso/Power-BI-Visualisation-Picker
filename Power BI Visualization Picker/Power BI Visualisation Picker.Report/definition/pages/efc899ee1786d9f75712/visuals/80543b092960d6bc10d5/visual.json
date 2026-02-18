@@ -2,15 +2,53 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "80543b092960d6bc10d5",
   "position": {
-    "x": 566.68463611859841,
-    "y": 9.4878706199460918,
+    "x": 750,
+    "y": 30,
     "z": 9000,
-    "height": 248.40970350404311,
-    "width": 350.188679245283,
+    "height": 300,
+    "width": 500,
     "tabOrder": 9000
   },
   "visual": {
-    "visualType": "keyDriversVisual",
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCustomer"
+                    }
+                  },
+                  "Property": "Segment"
+                }
+              },
+              "queryRef": "DimCustomer.Segment"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures (2)"
+                    }
+                  },
+                  "Property": "Total Sales"
+                }
+              },
+              "queryRef": "Measures (2).Total Sales"
+            }
+          ]
+        }
+      }
+    },
     "drillFilterOtherVisuals": true
   }
 }

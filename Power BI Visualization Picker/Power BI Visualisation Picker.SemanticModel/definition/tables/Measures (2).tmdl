@@ -9,6 +9,20 @@ table 'Measures (2)'
 
 		annotation SummarizationSetBy = Automatic
 
+	measure 'Total Sales' = SUM(FactSales[SalesAmount])
+		formatString: "$#,0.00"
+
+	measure 'Total Quantity' = SUM(FactSales[Quantity])
+
+	measure 'Average Unit Price' = DIVIDE([Total Sales], [Total Quantity])
+		formatString: "$#,0.00"
+
+	measure 'Sales per Customer' = DIVIDE([Total Sales], DISTINCTCOUNT(DimCustomer[CustomerKey]))
+		formatString: "$#,0.00"
+
+	measure '% Sales Share' = DIVIDE([Total Sales], CALCULATE([Total Sales], ALL(DimProduct[Category])))
+		formatString: "0.00%"
+
 	partition 'Measures (2)' = m
 		mode: import
 		source =

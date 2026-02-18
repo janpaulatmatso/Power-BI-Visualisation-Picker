@@ -2,44 +2,53 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "69a0e97d5eac1197bafe",
   "position": {
-    "x": 0,
-    "y": 0,
-    "z": 0,
-    "height": 720.21563342318052,
-    "width": 204.42048517520215,
-    "tabOrder": 0
+    "x": 222,
+    "y": 30,
+    "z": 1000,
+    "height": 300,
+    "width": 500,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "shape",
-    "objects": {
-      "shape": [
-        {
-          "properties": {
-            "tileShape": {
-              "expr": {
-                "Literal": {
-                  "Value": "'rectangle'"
+    "visualType": "map",
+    "query": {
+      "queryState": {
+        "Location": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimRegion"
+                    }
+                  },
+                  "Property": "Country"
                 }
-              }
+              },
+              "queryRef": "DimRegion.Country"
             }
-          }
-        }
-      ],
-      "rotation": [
-        {
-          "properties": {
-            "shapeAngle": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures (2)"
+                    }
+                  },
+                  "Property": "Total Sales"
                 }
-              }
+              },
+              "queryRef": "Measures (2).Total Sales"
             }
-          }
+          ]
         }
-      ]
+      }
     },
     "drillFilterOtherVisuals": true
-  },
-  "howCreated": "InsertVisualButton"
+  }
 }

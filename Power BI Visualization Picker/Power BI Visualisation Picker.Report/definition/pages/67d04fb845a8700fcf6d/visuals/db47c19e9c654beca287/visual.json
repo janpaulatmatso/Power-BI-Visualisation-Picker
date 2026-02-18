@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "27ef1e4937440a28795b",
+  "name": "db47c19e9c654beca287",
   "position": {
-    "x": 750,
-    "y": 30,
-    "z": 3000,
+    "x": 1014,
+    "y": 370,
+    "z": 4000,
     "height": 300,
-    "width": 500,
-    "tabOrder": 3000
+    "width": 236,
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "treemap",
+    "visualType": "lineClusteredColumnComboChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,17 +20,17 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimProduct"
+                      "Entity": "DimDate"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "MonthName"
                 }
               },
-              "queryRef": "DimProduct.Category"
+              "queryRef": "DimDate.MonthName"
             }
           ]
         },
-        "Values": {
+        "Y": {
           "projections": [
             {
               "field": {
